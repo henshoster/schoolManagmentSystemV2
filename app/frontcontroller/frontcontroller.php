@@ -1,11 +1,15 @@
 <?php
+// The FrontController controlls the MVC structure of this project by triggers from the user that comes from the URL ($_GET['route'] and $_GET['action']).  
 class FrontController
 {
     protected $controller;
     protected $view;
     protected $model;
 
-    public function __construct(Router $router, $routeName = null, $action = null)
+    // $router = saves all MVC triad combinations.
+    // $routeName = $_GET['route'] / null(if not provided any route) - controls wich MVC triad will be load from the router, if null = loading default MVC.
+    // $action = $_GET['action'] / null(if not provided any action) - triggers the relevant controller to execute action (function).
+    public function __construct(Router $router, $routeName, $action)
     {
         require_once "app/model/{$routeName}model.php";
         require_once "app/controller/{$routeName}controller.php";
@@ -14,26 +18,21 @@ class FrontController
         $modelName = $route->model;
         $controllerName = $route->controller;
         $viewName = $route->view;
-        $model = new $modelName;
 
-        $this->model = $model;
+        $this->model = new $modelName;
         $this->controller = new $controllerName($this->model);
         $this->view = new $viewName($this->model, $routeName);
 
         if (!empty($action)) {
             $this->controller->{$action}();
         }
-
     }
 
-    public function getModel()
-    {
-        return $this->model;
-    }
     public function printHeader()
     {
         return $this->view->HeaderOutput();
     }
+
     public function printSection()
     {
         return $this->view->output();
