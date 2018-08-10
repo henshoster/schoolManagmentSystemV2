@@ -1,5 +1,10 @@
 <?php
 require_once 'app/model/model.php';
+// model for 'Administration' tab -> loaded only when route=admin and classification > 1 (role = manager / owner).
+
+// $administrators = array of administrators.
+
+
 class AdminModel extends Model
 {
     const DB_ADMINISTRATORS = 'administrators';
@@ -13,6 +18,7 @@ class AdminModel extends Model
             header('Location:index.php');
             die();
         }
+        // if classification < 3 (role != owner) -> not loading owner details into administrators array.
         if ($this->classification < 3) {
             $this->administrators = $this->select(self::DB_ADMINISTRATORS, '*', "role NOT LIKE 'owner' ORDER BY role='manager' DESC");
         } else {

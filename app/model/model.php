@@ -1,6 +1,8 @@
 <?php
 require_once 'user.php';
-
+// contains main container template path (string $main_container_tpl). and selected entity info (array $selected_entity_info).
+// both params are common for his inheritors.
+// extends User (User extends DB) -> provide to his inheritors access to $loggedInUser and $classification, and access to DataBase.
 class Model extends User
 {
     protected $main_container_tpl;
@@ -11,6 +13,7 @@ class Model extends User
         parent::__construct();
         if ($this->getClassification() != 0) {
             $this->main_container_tpl = 'app/view/templates/' . str_replace('model', '', strtolower(get_class($this))) . '/maincontainer/default_tpl.php';
+            $this->selected_entity_info = null;
         }
     }
     public function getMainContainerTpl()
