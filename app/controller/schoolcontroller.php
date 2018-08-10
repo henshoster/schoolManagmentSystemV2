@@ -27,7 +27,9 @@ class SchoolController extends Controller
     {
         $courses = isset($_POST['courses']) ? $_POST['courses'] : null;
         unset($_POST['courses']);
+        // create / update entity -> $id = contains the id of the entity.
         $id = parent::saveEntity();
+        // in case the new entity is student -> push student id + courses id wich he is registered to them to the related table (students2courses) . first remove all data for this student id, then push the new data(even if the data is not changed).
         if ($_GET['type'] == 'students') {
             $this->model->delete(self::DB_S2C, "students_id='$id'");
             $columns = ['students_id', 'courses_id'];
@@ -60,7 +62,9 @@ class SchoolController extends Controller
 
     public function findSelectedEntityInfo()
     {
+        // parent function finds the entity from the array of entities and set it to $selected_entity_info in model.
         parent::findSelectedEntityInfo();
+        // the rest of the function find the connected entities to the selected entity to be displayed in the relevant page and set it to the model.
         $connected_entity_name = str_replace('2', '', str_replace($_GET['type'], '', self::DB_S2C));
         $temp_connected_entity_info = $this->model->queryTreatment(
             "SELECT id,name,image_src
