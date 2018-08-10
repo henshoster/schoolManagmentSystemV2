@@ -4,6 +4,8 @@ class View
     protected $model;
     protected $route;
 
+    //$main_container_tpl = path to relevant main container template.
+    //$selected_entity_info = array of info about the selected entity.
     protected $main_container_tpl;
     protected $selected_entity_info;
 
@@ -12,6 +14,7 @@ class View
         $this->model = $model;
         $this->route = $route;
     }
+    // include relevant templates for the header (nav bar + login).
     public function HeaderOutput()
     {
         $classification = $this->model->getClassification();
@@ -19,6 +22,7 @@ class View
         include 'app/view/templates/header/header_tpl.php';
         include 'app/view/templates/modals/login_modal.php';
     }
+    // include relevant templates for the section of the page.
     public function output()
     {
         if ($this->route != null) {

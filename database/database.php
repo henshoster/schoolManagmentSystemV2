@@ -25,8 +25,8 @@ abstract class DataBase
             $this->queryTreatment("ALTER TABLE `students2courses` ADD UNIQUE (`students_id`, `courses_id`)");
         }
         if ($this->db->connect_error) {
-            echo "<pre>";
-            var_dump($this->db);
+            // echo "<pre>";
+            // var_dump($this->db);
             die("Connection failed: " . $this->db->connect_error);
         }
     }
