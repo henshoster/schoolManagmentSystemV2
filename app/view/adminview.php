@@ -2,6 +2,7 @@
 require_once 'app/view/view.php';
 class AdminView extends View
 {
+    //$administrators = array of administrators
     protected $administrators;
 
     public function output()
