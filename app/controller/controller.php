@@ -22,9 +22,18 @@ class Controller
     // htmlspecialchars - Convert special characters to HTML entities.
     public function checkInput($data)
     {
+        if (is_array($data)) {
+           foreach ($data as $key => $value) {
+               $data[$key] = trim($value);
+               $data[$key] = stripslashes($value);
+               $data[$key] = htmlspecialchars($value);
+           }
+        }else
+        {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
+        }
         return $data;
     }
 
