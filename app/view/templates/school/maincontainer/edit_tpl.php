@@ -28,9 +28,6 @@ foreach ($this->selected_entity_info as $key => $value) {
             </div>
             <div id="clientSideImageValidation" class="alert alert-warning alert-dismissible fade show my-1 mx-auto d-none" role="alert">
                     <strong>Warning!</strong><br> Maximum size for upload is 500KB!<br>Please change the image!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
             </div>
             <?php if (isset($_GET['upload_error'])) {?>
             <div class="alert alert-warning alert-dismissible fade show m-3" role="alert">

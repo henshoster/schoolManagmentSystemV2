@@ -34,9 +34,6 @@ foreach ($this->administrators[0] as $key => $value) {
             </div>
             <div id="clientSideImageValidation" class="alert alert-warning alert-dismissible fade show my-1 mx-auto d-none" role="alert">
                     <strong>Warning!</strong><br> Maximum size for upload is 500KB!<br>Please change the image!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
             </div>
         </div>
         <?php } elseif ($key == 'role') {?>
