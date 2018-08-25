@@ -1,7 +1,9 @@
+// modal pop if log in proccess did not succeeded
 if (window.location.search.indexOf("loginerror") != -1) {
   $("#logInModal").modal("show");
 }
 
+// add customclass for inputs when there is any input inside.
 var inputs = document.querySelectorAll(
   "input[type=text] ,input[type=email], input[type=password], textarea,select"
 );
@@ -42,6 +44,7 @@ inputs.forEach(input => {
   );
 })();
 
+// file upload client side validation for maximum size + image preview.
 var upload = document.querySelector("input[type=file]");
 if (upload != null) {
   upload.addEventListener("change", function(e) {
@@ -60,6 +63,7 @@ if (upload != null) {
   });
 }
 
+//preparation for google analytics events handler (clicks on site)
 var trackEvents = document.querySelectorAll("button,a");
 trackEvents.forEach(event => {
   event.addEventListener("click", function(e) {
